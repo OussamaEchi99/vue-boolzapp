@@ -25,12 +25,26 @@ body{
     display: flex;
 }
 
+.contact_messages_left{
+    justify-content: flex-start;
+}
+
+.contact_background_color{
+    background-color: white;
+}
+
+.user_messages_right{
+    justify-content: flex-end;
+}
+
+.user_background_color{
+    background-color: #d5f9ba;;
+}
+
 /* MENU_CONTACTS */
 .menu_contacts{
     width: calc(30% - 1px);
     border-right: 1px solid #dbdbdb;
-
-    background-color: cyan;
 }
 
 /* USER_AVATER_MENU */
@@ -176,12 +190,8 @@ body{
 }
 
 /* CHAT */
-.chat{
+.chat_section{
     width: 70%;
-
-
-
-    background-color: darkmagenta;
 }
 
 /* CONTACT INFO CHAT */
@@ -237,4 +247,51 @@ body{
 
 .menu_chat i:last-child{
     margin-right: 30px;
+}
+
+/* CHAT */
+.chat{
+    background-image: url("../img/mine.jpg");
+    height: calc( 100% - 22%);
+}
+
+.messages{
+    width: 80%;
+    height: 100%;
+    margin: auto;
+}
+
+.contact-user_messages{
+    width: 100%;
+    display: flex;
+}
+
+.contact-user_text_message{
+    width: 300px;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.first_message{
+    margin-top: 50px;
+}
+
+.text_message{
+    padding: 20px 0 0 15px;
+}
+
+.time_message{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+}
+
+.time_message span{
+    margin: 5px 5px 3px 0;
+    color: #b6b9bc;
 }
