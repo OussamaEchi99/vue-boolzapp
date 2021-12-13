@@ -13,6 +13,7 @@ const app = new Vue(
         el: '#root',
         data: {
             userMessageSent: '',
+            textFilter: '',
             activeContact: 0,
             contacts: [
                 {
@@ -128,6 +129,15 @@ const app = new Vue(
                         status: 'received',
                     }
                 )
+            },
+            contactsFilter: function () {
+                this.contacts.foreach((element) => {
+                    if (element.messages.text.includes(this.textFilter)) {
+                        element.messages.visible = true;
+                    } else {
+                        element.messages.visible = false;
+                    }
+                });
             }
         }
     },

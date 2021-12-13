@@ -48,7 +48,7 @@
                 <div class="search_bar">
                     <!-- Input And Icon -->
                     <div class="input_bar">
-                        <input class="search_bar_input" type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input class="search_bar_input" v-model="textFilter" @keyup="contactsFilter" type="text" placeholder="Cerca o inizia una nuova chat">
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
