@@ -55,18 +55,24 @@
                 <!-- Contacts -->
                 <div class="contacts">
                     <!-- Contact -->
-                    <div @click="thisContact(index)" v-for="(contact, index) in contacts" class="contact"
-                    :class="{ 'contacted_clicked': activeContact === index }"
-                    >
-                        <div class="contact_info">
-                            <!-- Contact Avatar -->
-                            <div class="contact_avatar">
-                                <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name + 'Image'">
+                    <template v-for="(contact, index) in contacts">
+                        <div
+                        @click="thisContact(index)"
+                        class="contact"
+                        :class="{ 'contacted_clicked': activeContact === index }"
+                        v-if="contact.visible"
+                        >
+                            <div class="contact_info">
+                                <!-- Contact Avatar -->
+                                <div class="contact_avatar">
+                                    <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name + 'Image'">
+                                </div>
+                                <!-- Contact Name -->
+                                <span>{{ contact.name }}</span>
                             </div>
-                            <!-- Contact Name -->
-                            <span>{{ contact.name }}</span>
                         </div>
-                    </div>
+                    </template>
+                    
                 </div>
             </div>
             <!-- Chat Section -->
