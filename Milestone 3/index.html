@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="root" class="web_app">
+        <div class="container">
+            <div class="menu_contacts">
+                <!-- User Info and Functions -->
+                <div class="user_avatar_function">
+                    <!-- User Info -->
+                    <div class="user_info">
+                        <div class="user_avatar">
+                            <img src="img/avatar_io.jpg" alt="User Avatar Image">
+                        </div>
+                        <span>Nome Utente</span>
+                    </div>
+                    <!-- Menù -->
+                    <div class="menu">
+                        <i class="fas fa-circle-notch"></i>
+
+                        <i class="fas fa-comment-alt"></i>
+
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <!-- Notification Option -->
+                <div class="notifications_option">
+                    <!-- Bell Notification -->
+                    <div class="bell">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <!-- Notification Option Text -->
+                    <div class="notification_option_text">
+                        <span>Ricevi notifiche di ogni messaggio</span>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+                <!-- Seach Bar Contacts -->
+                <div class="search_bar">
+                    <!-- Input And Icon -->
+                    <div class="input_bar">
+                        <input class="search_bar_input" type="text" placeholder="Cerca o inizia una nuova chat">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <!-- Contacts -->
+                <div class="contacts">
+                    <!-- Contact -->
+                    <div @click="thisContact(index)" v-for="(contact, index) in contacts" class="contact"
+                    
+                    >
+                        <div class="contact_info">
+                            <!-- Contact Avatar -->
+                            <div class="contact_avatar">
+                                <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name + 'Image'">
+                            </div>
+                            <!-- Contact Name -->
+                            <span>{{ contact.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Chat Section -->
+            <div class="chat_section">
+                <!-- Chat Header -->
+                <div class="contact_avatar_function">
+                    <!-- Contact Chat Info -->
+                    <div class="contact_info_chat">
+                        <div class="contact_chat_avatar">
+                            <img :src="'img/avatar' + contacts[activeContact].avatar + '.jpg'" alt="contacts[activeContact].name + 'Avatar Image'">
+                        </div>
+                        <div class="contact_name_time_login">
+                            <span class="name_chat">{{ contacts[activeContact].name }}</span>
+                            <span class="login_time">Ultimo accesso oggi alle</span>
+                        </div>
+                    </div>
+                    <!-- Menù Chat -->
+                    <div class="menu_chat">
+                        <i class="fas fa-search"></i>
+
+                        <i class="fas fa-paperclip"></i>
+
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <!-- Chat Section -->
+                <div class="chat">
+                    <!-- Message -->
+                    <div class="messages">
+                        <!-- Contact Message -->
+                        <div v-for="(contact, index) in contacts[activeContact].messages" class="contact-user_messages"
+                            :class="contact.status"
+                        >
+                            <div class="contact-user_text_message contact_background_color first_message" 
+                                :class="contact.status"
+                            >
+                                <!-- Text Message -->
+                                <div class="text_message">
+                                    <span>{{ contact.text }}</span>
+                                </div>
+                                <!-- Time Message Sent -->
+                                <div class="time_message">
+                                    <span>{{ contact.date }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- User Message -->
+                    </div>
+                </div>
+                <!-- Message Bar -->
+                <div class="text_user_message_section">
+                    <!-- Emoticon -->
+                    <div class="emoticon">
+                        <i class="far fa-smile"></i>
+                    </div>
+                    <!-- Text Message Bar -->
+                    <div class="text_bar_message">
+                        <input @keyup.enter="sendMessage" class="message_bar" v-model="userMessageSent" type="text" placeholder="Scrivi un messaggio">
+                    </div>
+                    <!-- Microphone -->
+                    <div class="microphone">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
