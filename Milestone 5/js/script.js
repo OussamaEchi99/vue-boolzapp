@@ -1,10 +1,11 @@
-// Milestone 3
-// Aggiunta di un messaggio: l’utente scrive un testo
-// nella parte bassa e digitando “enter” il testo
-// viene aggiunto al thread sopra, come messaggio verde
-// Risposta dall’interlocutore: ad ogni inserimento
-// di un messaggio, l’utente riceverà un “ok” come risposta,
-// che apparirà dopo 1 secondo.
+// Milestone 5
+// Cancella messaggio: cliccando sul messaggio
+// appare un menu a tendina che permette di cancellare
+// il messaggio selezionato
+// Visualizzazione ora e ultimo messaggio
+// inviato/ricevuto nella lista dei contatti.
+// (Gli screenshot per la milestone 5 li trovate
+// alla fine di questo messaggio)
 
 Vue.config.devtools = true;
 
@@ -16,6 +17,7 @@ const app = new Vue(
             textFilter: '',
             activeContact: 0,
             activeChatMenu: null,
+            lastText: [],
             contacts: [
                 {
                     name: 'Michele',
@@ -105,27 +107,26 @@ const app = new Vue(
         methods: {
             thisContact: function (clickContact) {
                 this.activeContact = clickContact;
-                console.log(this.activeContact)
             },
             sendMessage: function () {
                 const userMessageText = this.userMessageSent;
                 this.contacts[this.activeContact].messages.push(
                     {
-                        date: 123,
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: userMessageText,
                         status: 'sent',
                     }
                 )
                 this.userMessageSent = '';
 
-                setTimeout(this.contactReply, 1000);
+                setTimeout(this.contactReply , 1000);
 
                 
             },
             contactReply: function () {
                 this.contacts[this.activeContact].messages.push(
                     {
-                        date: 4567,
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         text: 'ok',
                         status: 'received',
                     }
@@ -142,15 +143,28 @@ const app = new Vue(
             },
             menuTextChat: function(clickedChatMenu) {
                 const menuChatText = document.getElementById("menu_text_chat_single");
-                this.activeChatMenu = clickedChatMenu;
-                // if (menuChatText.classList.contains('display_none')) {
-                //     menuChatText.classList.add("menu_text_chat");
-                //     menuChatText.classList.remove("display_none");
-                // } else {
-                //     menuChatText.classList.remove("menu_text_chat");
-                //     menuChatText.classList.add("display_none");
-                // }
+                if (this.activeChatMenu === clickedChatMenu) {
+                    this.activeChatMenu = null;
+                } else {
+                    this.activeChatMenu = clickedChatMenu;
+                }
+            },
+            deleteChat: function (thisChat) {
+                this.contacts[this.activeContact].messages.splice(thisChat, 1);
+            },
+            fixMenuChat: function () {
+                this.activeChatMenu = null;
             }
-        }
+        },
+        // created: function() {
+        //     this.contacts.forEach((element) => {
+        //         const lol = element;
+        //         const lollol = element.length;
+        //         this.contacts.forEach((index) => {
+        //             this.lastText.push(lol[lollol].index[index.length].text);
+        //             console.log(this.lastText);
+        //         });
+        //     });
+        // }
     },
 );

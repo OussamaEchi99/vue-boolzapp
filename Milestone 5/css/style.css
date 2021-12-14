@@ -196,6 +196,11 @@ body{
     border-radius: 50%;
 }
 
+.contact_message_info{
+    display: flex;
+    flex-direction: column;
+}
+
 /* CHAT */
 .chat_section{
     width: 70%;

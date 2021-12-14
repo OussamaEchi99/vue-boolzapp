@@ -57,7 +57,7 @@
                     <!-- Contact -->
                     <template v-for="(contact, index) in contacts">
                         <div
-                        @click="thisContact(index)"
+                        @click="thisContact(index); fixMenuChat();"
                         class="contact"
                         :class="{ 'contacted_clicked': activeContact === index }"
                         v-if="contact.visible"
@@ -68,7 +68,11 @@
                                     <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name + 'Image'">
                                 </div>
                                 <!-- Contact Name -->
-                                <span>{{ contact.name }}</span>
+                                <div class="contact_message_info">
+                                    <span>{{ contact.name }}</span>
+                                    <span>{{ created }}</span>
+                                    <span>{{ contact.name }}</span>
+                                </div>
                             </div>
                         </div>
                     </template>
@@ -117,7 +121,7 @@
                                         :class="{ 'menu_text_chat': activeChatMenu === index }"
                                     >
                                         <div class="function_menu_chat"><span>Message Info</span></div>
-                                        <div class="function_menu_chat"><span>Delete Message</span></div>
+                                        <div  @click="deleteChat(index)" class="function_menu_chat"><span>Delete Message</span></div>
                                     </div>
                                 </div>
                                 <!-- Time Message Sent -->
@@ -149,5 +153,6 @@
     </div>
     
     <script type="text/javascript" src="js/script.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 </body>
 </html>
