@@ -15,6 +15,7 @@ const app = new Vue(
             userMessageSent: '',
             textFilter: '',
             activeContact: 0,
+            activeChatMenu: null,
             contacts: [
                 {
                     name: 'Michele',
@@ -138,6 +139,17 @@ const app = new Vue(
                         element.visible = false;
                     }
                 });
+            },
+            menuTextChat: function(clickedChatMenu) {
+                const menuChatText = document.getElementById("menu_text_chat_single");
+                this.activeChatMenu = clickedChatMenu;
+                // if (menuChatText.classList.contains('display_none')) {
+                //     menuChatText.classList.add("menu_text_chat");
+                //     menuChatText.classList.remove("display_none");
+                // } else {
+                //     menuChatText.classList.remove("menu_text_chat");
+                //     menuChatText.classList.add("display_none");
+                // }
             }
         }
     },
